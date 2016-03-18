@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+DOCKE_COMPOSE_ARGS="-f docker-compose.ci.yml run"
+
+
+docker-compose $DOCKE_COMPOSE_ARGS test /exec bundle exec rake db:setup
+docker-compose $DOCKE_COMPOSE_ARGS test /exec bundle exec rspec spec

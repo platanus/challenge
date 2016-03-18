@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# Set up Rails app. Run this script immediately after cloning the codebase.
+# https://la-guia.platan.us/code/rails.html#getting-started
+
+# Exit if any subcommand fails
+set -e
+
+# Set up Ruby dependencies via Bundler
+gem install bundler --conservative
+bundle check || bundle install
+
+# Set up database
+bin/rake db:setup
+
+# Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
+mkdir -p .git/safe
+
+if heroku auth:whoami &> /dev/null; then
+  # Setup heroku application remotes
+  if heroku apps:info --app pl-challenge-staging &> /dev/null; then
+    git remote add staging git@heroku.com:pl-challenge-staging.git || true
+    git config heroku.remote staging
+    echo 'You are a collaborator on the "pl-challenge-staging" Heroku app'
+  else
+    echo 'Ask for access to the "pl-challenge-staging" Heroku app'
+  fi
+
+  if heroku apps:info --app pl-challenge-production &> /dev/null; then
+    git remote add production git@heroku.com:pl-challenge-production.git || true
+    echo 'You are a collaborator on the "pl-challenge-production" Heroku app'
+  else
+    echo 'Ask for access to the "pl-challenge-production" Heroku app'
+  fi
+else
+  echo 'You need to login to heroku. Run "heroku login"'
+fi
