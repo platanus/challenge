@@ -1,7 +1,19 @@
+.ugly {
+	position:absolute;
+	top:0;
+	left:0;
+	z-index: 2;
+}
+
 body {
 	background-color: #000000;
 	margin: 0px;
 	overflow: hidden;
+}
+
+section {
+	position:relative;
+	z-index:1;
 }
 
 .shell-wrap {
@@ -76,4 +88,12 @@ input[type='password'] {
   background:#141414;
   color:#45d40c;
   outline:none;
+}
+
+canvas {
+	position:absolute;
+	top: 0;
+	left: 0;
+	width:100% !important;
+	height:100% !important;
 }
