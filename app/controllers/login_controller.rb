@@ -1,5 +1,3 @@
-require 'pry'
-
 class LoginController < ApplicationController
   def index
     if cookies['password_hash'].nil?
