@@ -7,11 +7,13 @@ class LoginController < ApplicationController
       cookies['password_hash'] = hash
       session['password_hash'] = hash
     end
+
+    render :index
   end
 
   def home
     if cookies['jellyfish'] == 'bananas'
-      render :index
+      index
     else
       render 'regular.html', layout: false
     end
@@ -31,10 +33,14 @@ class LoginController < ApplicationController
   private
 
   def encrypt(string)
-    Digest::SHA1.base64digest(string)
+    Digest::SHA1.hexdigest(string)
   end
 
   def list
-    ['Storm','Cyclops','Wolverine']
+    File.read(list_path).split("\n")
+  end
+
+  def list_path
+    Rails.application.assets["pokemons.txt"].pathname
   end
 end
