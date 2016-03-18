@@ -13,7 +13,7 @@ class LoginController < ApplicationController
     if cookies['jellyfish'] == 'bananas'
       render :index
     else
-      render 'regular.html'
+      render 'regular.html', layout: false
     end
   end
 
