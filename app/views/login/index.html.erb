@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      body {
+        width:50%;
+        max-width:1024px;
+        min-width:800px;
+        margin:0 auto;
+        padding-top: 200px;
+      }
+
+      p, li {
+        font:normal normal 20px arial,sans-serif;
+      }
+
+      input[type='password'] {
+        width:100%;
+        margin-top:60px;
+        font-size:30px;
+      }
+
+      input[type='submit'] {
+        margin-top:10px;
+        width:100%;
+
+      }
+    </style>
+  </head>
+  <body>
+    <%= @attempts %>
+
+    <% if !@result.nil? %>
+      <h2><%= @result  %></h2>
+    <% else %>
+      <section>
+        <p>You have connected to your targets computer. Now you only need the right password.</p>
+
+        <p>
+          Luckily after a few weeks of research you have some clues:
+        </p>
+
+        <ul>
+          <li>The encrypted password is stored in a browser cookie. Trying to unencrypt it is
+          pointless but it will be useful to find the right password.</li>
+          <li>You know the password is encrypted using the SHA1 algorithm.</li>
+          <li>The target is a huge fan of the x-men universe. You got together a list of all
+          it's charcters.</li>
+        </ul>
+      </section>
+
+      <section>
+        <%= form_tag do %>
+          <%= password_field_tag :password %>
+          <%= submit_tag "login" %>
+        <% end %>
+      </section>
+    <% end %>
+
+  </body>
+</html>
