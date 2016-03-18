@@ -4,25 +4,25 @@
   <h2><%= @result  %></h2>
 <% else %>
   <section>
-    <p>You have connected to your targets computer. Now you only need the right password.</p>
+    <div class="shell-wrap">
+      <p class="shell-top-bar">/Users/csalinf/Documents/websites/</p>
 
-    <p>
-      Luckily after a few weeks of research you have some clues:
-    </p>
+      <div class="shell-body">
+        <p># You have connected to your target's computer. Now you only need the right password.</p>
+        <p># Luckily after a few weeks of research you have some clues:</p>
+        <p># The encrypted password is stored in a browser cookie. Trying to unencrypt it is pointless but it will be useful to find the right password.</p>
+        <p># You know the password is encrypted using the SHA1 algorithm.</p>
+        <p># The target is a huge pokemon nerd so you got a <%= link_to "list of all of them", asset_path("pokemons.txt") %>.</p>
 
-    <ul>
-      <li>The encrypted password is stored in a browser cookie. Trying to unencrypt it is
-      pointless but it will be useful to find the right password.</li>
-      <li>You know the password is encrypted using the SHA1 algorithm.</li>
-      <li>The target is a huge pokemon nerd so you got a <%= link_to "list of all of them", asset_path("pokemons.txt") %>.</li>
-    </ul>
-  </section>
-
-  <section>
-    <%= form_tag do %>
-      <%= password_field_tag :password %>
-      <%= submit_tag "login" %>
-    <% end %>
+        <ul>
+          <li>
+            <%= form_tag do %>
+              <%= password_field_tag :password, "" ,autofocus: "autofocus" %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
   </section>
 <% end %>
 <%= render partial: "/login/partials/ugly"%>
