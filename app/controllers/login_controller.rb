@@ -39,6 +39,6 @@ class LoginController < ApplicationController
   end
 
   def list_path
-    Rails.application.assets["pokemons.txt"].pathname
+    Rails.root.join("public","pokemons.txt")
   end
 end
