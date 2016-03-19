@@ -1,5 +1,8 @@
 $(function(){
-	$(".ugly").fadeOut(1000);
+  setTimeout(function() {
+    $(".ugly").fadeOut(500);
+  }, 4000);
+
 
 	init();
 	animate();
